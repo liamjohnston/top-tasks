@@ -121,5 +121,10 @@ $(function() {
 
 	});
 
+	//UUUGGHHH fix for dumb ios 'doublt tasp issue (look it up, it's stupid)
+	$('#tasks').on('touchend', '.ranker', function() {
+		window.location.href = $(this).attr("href");
+	});
+
 });
 //end do stuff
