@@ -53,13 +53,13 @@ $(function() {
 		  	if (!$item.find('li').length) {
 				$(this).append(
 		  			'<ul class="dropdown-menu ranks">' +
-					    '<li><a href="#" class="rank" data-ranktext="1st"><strong>Most</strong> important</a></li>' +
-					    '<li><a href="#" class="rank" data-ranktext="2nd">2nd most important</a></li>' +
-					    '<li><a href="#" class="rank" data-ranktext="3rd">3rd most important</a></li>' +
-					    '<li><a href="#" class="rank" data-ranktext="4th">4th most important</a></li>' +
-					    '<li><a href="#" class="rank" data-ranktext="5th">5th most important</a></li>' +
+					    '<li><a href="#0" class="rank" data-ranktext="1st"><strong>Most</strong> important</a></li>' +
+					    '<li><a href="#0" class="rank" data-ranktext="2nd">2nd most important</a></li>' +
+					    '<li><a href="#0" class="rank" data-ranktext="3rd">3rd most important</a></li>' +
+					    '<li><a href="#0" class="rank" data-ranktext="4th">4th most important</a></li>' +
+					    '<li><a href="#0" class="rank" data-ranktext="5th">5th most important</a></li>' +
 					    '<li role="separator" class="divider"></li>' +
-					    '<li><a href="#">Unrank</a></li>' +
+					    '<li><a href="#0">Unrank</a></li>' +
 					'</ul>'
 		  		);
 		  	}
