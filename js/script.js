@@ -28,7 +28,7 @@ $(function() {
 	$('#instructionsModal').modal('show');
 
 	//get the content of our task list, stick it on the page
-	$.getJSON('../tasks.json', function(data) {
+	$.getJSON('tasks.json', function(data) {
 	  
 		var items = [];
 		$.each(data, function(key, val) {
