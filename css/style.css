@@ -28,6 +28,11 @@ body {
 	color: #3c763d;
 	font-weight: bold;
 }
+.ranker.rankErr {
+	background: #f1caca;
+	color: #843534;
+	font-weight: bold;
+}
 
 .actions {
 	background: #fff;
@@ -44,6 +49,9 @@ body {
 }
 
 /* BS overrides */
+.container {
+	max-width: 800px;
+}
 .dropdown-menu>li>a {
 	padding-top: 10px;
 	padding-bottom: 10px;

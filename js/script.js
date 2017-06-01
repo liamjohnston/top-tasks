@@ -2,20 +2,45 @@ var rankLimit = 5;
 
 function validate() {
 	var $countLabel = $('#counterRanked'),
-		rankedVal = $('#tasks .ranked').length;
+		rankedVal = $('#tasks .ranked').length,
+		//todo: make better:
+		allRankedOnce = ($('#tasks .rank_1st').length === 1 &&
+						 $('#tasks .rank_2nd').length === 1 &&
+						 $('#tasks .rank_3rd').length === 1 &&
+						 $('#tasks .rank_4th').length === 1 &&
+						 $('#tasks .rank_5th').length === 1);
 
-	$countLabel.html(rankedVal);
+	//highlight duplicate ranks
+	$('[class*="rank_"]').each(function() {
+	    for (var i = 0; i < this.classList.length; i++) {
+	        if (this.classList[i].indexOf('rank_') == 0) {
 
-	//resets
-	$('.counter').removeClass('text-danger');
-	$('.btnProceed').removeAttr('disabled');
+				var $thisRank = $('#tasks .' + this.classList[i]);
+				if ($thisRank.length > 1) {
+					$thisRank.removeClass('ranked').addClass('rankErr');
+				} else {
+					$thisRank.addClass('ranked').removeClass('rankErr');
+				}
+	        }
+	    }    
+	});
 
-	if (rankedVal < rankLimit) { //not enough ranked
+	//block submit if rank duplicates and insufficient # of ranks
+	if (!allRankedOnce) {
 		$('.btnProceed').prop('disabled', true);
-	} else if (rankedVal > rankLimit) { //too many ranked
-		$('.counter').addClass('text-danger');
-		$('.btnProceed').prop('disabled', true);
+	} else {
+		$('.btnProceed').removeAttr('disabled');
 	}
+
+	//too many ranked - status label
+	if (rankedVal  > rankLimit) {
+		$('.counter').addClass('text-danger');
+	} else {
+		$('.counter').removeClass('text-danger');
+	}
+
+	//update status label
+	$countLabel.html(rankedVal);
 
 }
 
@@ -77,12 +102,12 @@ $(function() {
 		
 		var $rankLabel = $(this).closest('.task').find('.ranker');
 
+		//note, the empty removeClass clears all existing classes, e.g. ranked AND rank_1st so things don't get messy
 		if ($(this).hasClass('rank')) {
 			var rankText = $(this).data('ranktext');
-
-			$rankLabel.html(rankText).addClass('ranked')
+			$rankLabel.html(rankText).removeClass().addClass('ranker ranked rank_' + rankText)
 		} else {
-			$rankLabel.html('Rank').removeClass('ranked')
+			$rankLabel.html('Rank').removeClass().addClass('ranker');
 		}
 
 		validate();
