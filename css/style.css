@@ -41,6 +41,14 @@ body {
 .counter {
 	font-weight: bold;
 }
+
+/* BS overrides */
+.dropdown-menu>li>a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
 @media all and (max-width: 768px) {
 	.counter {
 		top: 15px;
