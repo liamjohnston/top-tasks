@@ -1,9 +1,8 @@
 var rankLimit = 5;
 
 function validate() {
-	var $countLabel = $('#counterRanked'),
-		rankedVal = $('#tasks .ranked').length,
-		//todo: make better:
+	var $countLabel = $('#counterRanked');
+		//todo: make this bit better:
 		allRankedOnce = ($('#tasks .rank_1st').length === 1 &&
 						 $('#tasks .rank_2nd').length === 1 &&
 						 $('#tasks .rank_3rd').length === 1 &&
@@ -40,7 +39,15 @@ function validate() {
 	}
 
 	//update status label
-	$countLabel.html(rankedVal);
+	var rankedVal = $('#tasks .ranked').length;
+	if ($('#tasks .rankErr').length > 0) {
+		$('.statusDupes').show();
+		$('.statusNormal').hide();
+	} else {
+		$('.statusDupes').hide();
+		$('.statusNormal').show();
+		$countLabel.html(rankedVal);
+	}
 
 }
 
