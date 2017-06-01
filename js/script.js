@@ -15,8 +15,6 @@ function validate() {
 	} else if (rankedVal > rankLimit) { //too many ranked
 		$('.counter').addClass('text-danger');
 		$('.btnProceed').prop('disabled', true);
-	} else {
-
 	}
 
 }
@@ -46,8 +44,16 @@ $(function() {
   		$('#counterTotal').html(rankLimit);
 
 	}).done(function () {
-		$('#tasks .dropdown').on('show.bs.dropdown', function () {
 
+		//randomise the order in the DOM... seems easier to do it after it's rendered :/
+		var ul = $("#tasks .task-list");
+	    var li = ul.children();
+	    while (li.length) {
+	        ul.append(li.splice(Math.floor(Math.random() * li.length), 1)[0]);
+	    }
+
+		//set up dropdown clicks now the things exist
+		$('#tasks .dropdown').on('show.bs.dropdown', function () {
 			var $item = $(this);
 
 		  	if (!$item.find('li').length) {
