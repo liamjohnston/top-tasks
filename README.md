@@ -2,7 +2,8 @@
 
 A prototype UI proritising for Top Tasks. 
 
-Demo:
+## Demo
+
 https://liamjohnston.github.io/top-tasks/
 
 ## About
@@ -20,4 +21,4 @@ There are other tools out there that do this sort of thing (a ranking-style ques
 This is designed as a mobile-first experience. That's why you won't see any text input fields or native select boxes. Those things are the pits on mobile.
 
 ## Scope
-This is just an *end-user* prototype. It doesn't handle start and end process stuff like how to input the tasks or collate/send the results.
+This is just an *end-user* prototype. It doesn't handle start and end process stuff like how to input the tasks or collate/send the results
