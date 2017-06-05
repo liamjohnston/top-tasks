@@ -22,7 +22,7 @@
 				<button class="btn btn-default" data-toggle="modal" data-target="#instructionsModal">Instructions</button>
 			</div>
 			<div class="counter col-sm-6 text-center">
-				<p class="statusNormal"><span id="counterRanked">0</span> of <span id="counterTotal">5</span> ranked</p>
+				<p class="statusNormal"><span id="counterRanked">0</span> of <span class="rankLimit">5</span> ranked</p>
 				<p class="statusDupes text-danger" style="display: none;">You have duplicates</p>
 			</div>
 			<div class="col-xs-6 col-sm-3 text-right">
@@ -40,7 +40,7 @@
 				<h4 class="modal-title">Instructions</h4>
 			</div>
 			<div class="modal-body">
-				<p>Please rank <strong>5 tasks / resources</strong> from the list that you believe are <strong>most important</strong>. Rank only 5, and leave the rest.</p>
+				<p>Please rank <strong><span class="rankLimit">5</span> tasks / resources</strong> from the list that you believe are <strong>most important</strong>. Rank only <span class="rankLimit">5</span>, and leave the rest.</p>
 				<p>Trust your first instincts and spend no more than <strong>5 minutes</strong> on this exercise.</p>
 			</div>
 			<div class="modal-footer">

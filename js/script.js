@@ -1,13 +1,70 @@
-var rankLimit = 5;
+//golden var. drives validation and ranking options.
+var rankLimit = 3;
 
+//make an array of ranks up to our defined limit.
+var rankArr = [];
+for (var i = 0; i != rankLimit; i++){
+  rankArr.push(i)
+}
+//buuuuttt... we don't want to have '0th' as an option... let's kill the first array item and append one to the end. 
+rankArr.shift(); //remove '0'
+rankArr.push(rankLimit); //add one to end
+//Is this hacky?? sorry internet :s
+
+function dropdownContent() {
+
+	var content = $('<ul />').addClass('dropdown-menu ranks');
+
+	//really want it to be clear that the first item is the MOST important one
+	content.append(
+	    	'<li><a href="#0" class="rank" data-ranktext="1st"><strong>Most</strong> important</a></li>');
+
+	//then loop out the rest
+    for (var i = 1; i < rankLimit; i++) {
+	    content.append(
+	    	'<li>' +
+	    		'<a href="#0" class="rank" data-ranktext="' + ordinalise(rankArr[i]) + '">' + 
+	    			ordinalise(rankArr[i]) + ' most important' +
+    			'</a>' +
+			'</li>');
+	}
+
+	//separator and 'unrank' option
+	content.append(
+		'<li role="separator" class="divider"></li>' +
+	    '<li><a href="#0">Unrank</a></li>');
+
+	return content;
+}
+
+//helper for ordinals
+//https://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number
+function ordinalise(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
+function allRankedCheck() {
+	if ($('#tasks .ranked').length === rankLimit) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+//validatation / help cues
 function validate() {
 	var $countLabel = $('#counterRanked');
-		//todo: make this bit better:
-		allRankedOnce = ($('#tasks .rank_1st').length === 1 &&
-						 $('#tasks .rank_2nd').length === 1 &&
-						 $('#tasks .rank_3rd').length === 1 &&
-						 $('#tasks .rank_4th').length === 1 &&
-						 $('#tasks .rank_5th').length === 1);
 
 	//highlight duplicate ranks
 	$('[class*="rank_"]').each(function() {
@@ -25,7 +82,7 @@ function validate() {
 	});
 
 	//block submit if rank duplicates and insufficient # of ranks
-	if (!allRankedOnce) {
+	if (!allRankedCheck()) {
 		$('.btnProceed').prop('disabled', true);
 	} else {
 		$('.btnProceed').removeAttr('disabled');
@@ -54,6 +111,8 @@ function validate() {
 //do stuff
 $(function() {
 
+	$('.rankLimit').html(rankLimit); //ensure UI refers to correct rank limit everywhere
+
 	//also has an inline style to limit fade effect on load
 	$('#instructionsModal').modal('show');
 
@@ -77,7 +136,7 @@ $(function() {
 
 	}).done(function () {
 
-		//randomise the order in the DOM... seems easier to do it after it's rendered :/
+		//TODO: find a nice way to randomise it BEFORE it goes to the DOM
 		var ul = $("#tasks .task-list");
 	    var li = ul.children();
 	    while (li.length) {
@@ -89,17 +148,7 @@ $(function() {
 			var $item = $(this);
 
 		  	if (!$item.find('li').length) {
-				$(this).append(
-		  			'<ul class="dropdown-menu ranks">' +
-					    '<li><a href="#0" class="rank" data-ranktext="1st"><strong>Most</strong> important</a></li>' +
-					    '<li><a href="#0" class="rank" data-ranktext="2nd">2nd most important</a></li>' +
-					    '<li><a href="#0" class="rank" data-ranktext="3rd">3rd most important</a></li>' +
-					    '<li><a href="#0" class="rank" data-ranktext="4th">4th most important</a></li>' +
-					    '<li><a href="#0" class="rank" data-ranktext="5th">5th most important</a></li>' +
-					    '<li role="separator" class="divider"></li>' +
-					    '<li><a href="#0">Unrank</a></li>' +
-					'</ul>'
-		  		);
+				$(this).append(dropdownContent());
 		  	}
 		});
 		
