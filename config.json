@@ -385,36 +385,17 @@
     "print.less",
     "type.less",
     "grid.less",
-    "forms.less",
     "buttons.less",
-    "responsive-utilities.less",
-    "button-groups.less",
-    "input-groups.less",
-    "labels.less",
-    "badges.less",
-    "alerts.less",
-    "progress-bars.less",
     "list-group.less",
-    "responsive-embed.less",
-    "wells.less",
     "close.less",
     "component-animations.less",
     "dropdowns.less",
-    "tooltip.less",
-    "popovers.less",
     "modals.less"
   ],
   "js": [
-    "alert.js",
-    "button.js",
     "dropdown.js",
     "modal.js",
-    "tooltip.js",
-    "popover.js",
-    "affix.js",
-    "collapse.js",
-    "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=2b9171814848534ee82969ab2af4c0f9"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=88f69a907c0f16b8ecc9568afc7e4e4f"
 }
