@@ -1,5 +1,5 @@
 //golden var. drives validation and ranking options.
-var rankLimit = 3;
+var rankLimit = 5;
 
 //make an array of ranks up to our defined limit.
 var rankArr = [];
